@@ -23,7 +23,9 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		ip := ""
 		for _, h := range headers {
-			ip = r.Header.Get(h)
+			if ip = r.Header.Get(h); ip != "" {
+				break
+			}
 		}
 
 		if ip == "" {
